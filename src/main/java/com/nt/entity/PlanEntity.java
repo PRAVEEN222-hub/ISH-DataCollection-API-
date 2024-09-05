@@ -15,6 +15,7 @@ public class PlanEntity {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer planId;
 	private String planName;
+	private Integer caseNo;
 	private LocalDate startDate;
 	private LocalDate endDate;
 	private String descrption;
@@ -28,9 +29,10 @@ public class PlanEntity {
 		// TODO Auto-generated constructor stub
 	}
 	public PlanEntity(Integer planId, String planName, LocalDate startDate, LocalDate endDate, String descrption,
-			String activeSW, LocalDate createdBy, LocalDate updatedBy, String credtedBy, String updated_By) {
+			String activeSW, LocalDate createdBy, LocalDate updatedBy, String credtedBy, String updated_By,Integer caseNo) {
 		super();
 		this.planId = planId;
+		this.caseNo=caseNo;
 		this.planName = planName;
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -40,6 +42,12 @@ public class PlanEntity {
 		this.updatedBy = updatedBy;
 		this.credtedBy = credtedBy;
 		this.updated_By = updated_By;
+	}
+	public Integer getCaseNo() {
+		return caseNo;
+	}
+	public void setCaseNo(Integer caseNo) {
+		this.caseNo = caseNo;
 	}
 	public Integer getPlanId() {
 		return planId;

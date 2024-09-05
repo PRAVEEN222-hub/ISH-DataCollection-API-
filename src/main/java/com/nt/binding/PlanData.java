@@ -3,7 +3,7 @@ package com.nt.binding;
 import java.time.LocalDate;
 
 public class PlanData {
-	
+	private Integer planId;
 	private String planName;
 	private LocalDate startDate;
 	private LocalDate endDate;
@@ -12,15 +12,18 @@ public class PlanData {
 	private LocalDate  createdBy;
 	private LocalDate updatedBy;
 	private String credtedBy;
+	private Integer caseNo;
 	private String updated_By;
 	public PlanData() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public PlanData(String planName, LocalDate startDate, LocalDate endDate, String descrption, String activeSW,
-			LocalDate createdBy, LocalDate updatedBy, String credtedBy, String updated_By) {
+			LocalDate createdBy, LocalDate updatedBy, String credtedBy, String updated_By,Integer caseNo,Integer planId) {
 		super();
 		this.planName = planName;
+		this.planId=planId;
+		this.caseNo=caseNo;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.descrption = descrption;
@@ -29,6 +32,18 @@ public class PlanData {
 		this.updatedBy = updatedBy;
 		this.credtedBy = credtedBy;
 		this.updated_By = updated_By;
+	}
+	public Integer getPlanId() {
+		return planId;
+	}
+	public void setPlanId(Integer planId) {
+		this.planId = planId;
+	}
+	public Integer getCaseNo() {
+		return caseNo;
+	}
+	public void setCaseNo(Integer caseNo) {
+		this.caseNo = caseNo;
 	}
 	public String getPlanName() {
 		return planName;

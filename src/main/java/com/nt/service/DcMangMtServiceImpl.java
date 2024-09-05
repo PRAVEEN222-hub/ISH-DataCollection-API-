@@ -22,7 +22,8 @@ public class DcMangMtServiceImpl implements IDcMngmtservice {
 	private IDccaseRepo dcRepo;
 	@Autowired
 	private IPlanRepo planRepo;
-	
+	@Autowired
+	private IDccaseRepo dcCaseRepo;
 
 	@Override
 	public Integer generateCaseNo(Integer appId) {
@@ -46,10 +47,17 @@ public class DcMangMtServiceImpl implements IDcMngmtservice {
 
 	@Override
 	public Integer savePlanSelection(PlanData data) {
-	PlanEntity entity=new PlanEntity();
-	BeanUtils.copyProperties(data, entity);
-	PlanEntity save = planRepo.save(entity);
-		return null;
+   //get the dcCaseEntity
+		Optional<DcCaseEntity> opt = dcCaseRepo.findById(data.getCaseNo());
+		if(opt.isPresent()) {
+			DcCaseEntity caseEntity=opt.get();
+			//update DccaseEntity
+			caseEntity.setPlanId(data.getPlanId());
+			dcCaseRepo.save(caseEntity);
+			return caseEntity.getCaseNo();
+		}
+		
+		return 0;
 	}
 
 	@Override
