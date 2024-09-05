@@ -13,8 +13,10 @@ import com.nt.binding.EducationalData;
 import com.nt.binding.IncomeData;
 import com.nt.binding.PlanData;
 import com.nt.entity.DcCaseEntity;
+import com.nt.entity.IncomeEntity;
 import com.nt.entity.PlanEntity;
 import com.nt.repo.IDccaseRepo;
+import com.nt.repo.IIncomeRepo;
 import com.nt.repo.IPlanRepo;
 
 public class DcMangMtServiceImpl implements IDcMngmtservice {
@@ -24,6 +26,8 @@ public class DcMangMtServiceImpl implements IDcMngmtservice {
 	private IPlanRepo planRepo;
 	@Autowired
 	private IDccaseRepo dcCaseRepo;
+	@Autowired
+	private IIncomeRepo incomeRepo;
 
 	@Override
 	public Integer generateCaseNo(Integer appId) {
@@ -62,8 +66,11 @@ public class DcMangMtServiceImpl implements IDcMngmtservice {
 
 	@Override
 	public Integer saveInComeDetails(IncomeData income) {
-		// TODO Auto-generated method stub
-		return null;
+		//convert binding obg to entity obj
+	  IncomeEntity incomeEntity=new IncomeEntity();
+	  BeanUtils.copyProperties(income, incomeEntity);
+	  incomeRepo.save(incomeEntity);
+		return incomeEntity.getCaseNo();
 	}
 
 	@Override
